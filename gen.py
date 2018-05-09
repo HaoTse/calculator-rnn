@@ -6,26 +6,35 @@ import myhelp
 parameters config
 '''
 config = myhelp.Config()
-ctable = myhelp.CharacterTable(config.chars)
 
 if __name__ == '__main__':
-    '''
-    data generation
-    '''
+    # data generation
     questions = []
     expected = []
     seen = set()
     print('Generating data...')
     while len(questions) < config.TRAINING_SIZE:
+        # choice + or -
+        if len(questions) >= config.TRAINING_SIZE / 2:
+            signed = '+'
+        else:
+            signed = '-'
+        
         f = lambda: int(''.join(np.random.choice(list('0123456789')) for i in range(np.random.randint(1, config.DIGITS + 1))))
         a, b = f(), f()
-        key = tuple(sorted((a, b)))
+        tmp = sorted((a, b))
+        key = tuple(tmp)
+        
         if key in seen:
             continue
+        if signed == '-':
+            (b, a) = tmp
+            ans = str(a - b)
+        else:
+            ans = str(a + b)
         seen.add(key)
-        q = '{}+{}'.format(a, b)
+        q = '{}{}{}'.format(a, signed, b)
         query = q + ' ' * (config.MAXLEN - len(q))
-        ans = str(a + b)
         ans += ' ' * (config.DIGITS + 1 - len(ans))
         if config.REVERSE:
             query = query[::-1]
