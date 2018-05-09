@@ -3,7 +3,7 @@ from keras import layers
 
 class Config():
     def __init__(self):
-        self.TRAINING_SIZE = 80000
+        self.TRAINING_SIZE = 40000
         self.DIGITS = 3
         self.REVERSE = False
         self.MAXLEN = self.DIGITS + 1 + self.DIGITS
