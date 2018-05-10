@@ -23,12 +23,13 @@ if __name__ == '__main__':
         f = lambda: int(''.join(np.random.choice(list('0123456789')) for i in range(np.random.randint(1, config.DIGITS + 1))))
         a, b = f(), f()
         tmp = sorted((a, b))
+        tmp.append(signed)
         key = tuple(tmp)
         
         if key in seen:
             continue
         if signed == '-':
-            (b, a) = tmp
+            (b, a, _) = tmp
             ans = str(a - b)
         else:
             ans = str(a + b)
