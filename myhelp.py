@@ -3,7 +3,7 @@ from keras import layers
 
 class Config():
     def __init__(self):
-        self.TRAINING_SIZE = 80000
+        self.TRAINING_SIZE = 90000
         self.DIGITS = 3
         self.REVERSE = False
         self.MAXLEN = self.DIGITS + 1 + self.DIGITS
@@ -11,8 +11,8 @@ class Config():
         self.RNN = layers.LSTM
         self.HIDDEN_SIZE = 128
         self.BATCH_SIZE = 128
-        self.LAYERS = 1
-        self.EPOCH = 75
+        self.LAYERS = 2
+        self.EPOCH = 80
 
 class colors:
     ok = '\033[92m'
