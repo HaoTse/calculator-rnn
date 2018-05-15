@@ -17,12 +17,25 @@ $ python gen.py
 ## Implementation
 
 ### usage
+- train
 ```
-usage: main.py [-h] [-p]
+usage: train.py [-h] [--dest DEST] [-p] [-v]
 
 optional arguments:
-  -h, --help  show this help message and exit
-  -p, --plot  plot the training process
+  -h, --help   show this help message and exit
+  --dest DEST  output model path
+  -p, --plot   plot the training process
+  -v, --valid  validation or not
+```
+- test
+```
+usage: test.py [-h] [--source SOURCE] [--question QUESTION] [--answer ANSWER]
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --source SOURCE      source model path
+  --question QUESTION  testing input data
+  --answer ANSWER      testing output data
 ```
 
 ### framework

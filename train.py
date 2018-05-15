@@ -25,8 +25,14 @@ if __name__ == '__main__':
     # argparse
     import argparse
     parser = argparse.ArgumentParser()
+    parser.add_argument('--dest',
+                       default='model/base_model.h5',
+                       help='output model path')
     parser.add_argument('-p', '--plot',
                        help='plot the training process',
+                       action='store_true')
+    parser.add_argument('-v', '--valid',
+                       help='validation or not',
                        action='store_true')
     args = parser.parse_args()
 
@@ -98,18 +104,22 @@ if __name__ == '__main__':
         plt.show()
 
     # validation
-    for i in range(10):
-        ind = np.random.randint(0, len(val_x))
-        rowx, rowy = val_x[np.array([ind])], val_y[np.array([ind])]
-        preds = model.predict_classes(rowx, verbose=0)
-        tmp = model.predict(rowx)
-        q = ctable.decode(rowx[0])
-        correct = ctable.decode(rowy[0])
-        guess = ctable.decode(preds[0], calc_argmax=False)
-        print('Q', q[::-1] if config.REVERSE else q, end=' ')
-        print('T', correct, end=' ')
-        if correct == guess:
-            print(colors.ok + '☑' + colors.close, end=' ')
-        else:
-            print(colors.fail + '☒' + colors.close, end=' ')
-        print(guess)
+    if args.valid:
+        for i in range(10):
+            ind = np.random.randint(0, len(val_x))
+            rowx, rowy = val_x[np.array([ind])], val_y[np.array([ind])]
+            preds = model.predict_classes(rowx, verbose=0)
+            tmp = model.predict(rowx)
+            q = ctable.decode(rowx[0])
+            correct = ctable.decode(rowy[0])
+            guess = ctable.decode(preds[0], calc_argmax=False)
+            print('Q', q[::-1] if config.REVERSE else q, end=' ')
+            print('T', correct, end=' ')
+            if correct == guess:
+                print(colors.ok + '☑' + colors.close, end=' ')
+            else:
+                print(colors.fail + '☒' + colors.close, end=' ')
+            print(guess)
+
+    # save model
+    model.save(args.dest)
