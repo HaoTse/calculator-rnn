@@ -1,5 +1,17 @@
 # Learning based Calculator
 
+## Requirements
+
+### Enviornment
+- Ubuntu 16.04
+- python 3.6.4
+
+### Prerequisite
+
+```
+pip install -r requirements.txt
+```
+
 ## Goal
 - 參考 [IKMLab adder](https://github.com/IKMLab/Adder-practice) 完成 subtractor
 - 結合 adder 和 subtractor
@@ -16,7 +28,7 @@ $ python gen.py
 
 ## Implementation
 
-### usage
+### Usage
 - train
 ```
 usage: train.py [-h] [--dest DEST] [-p] [-v]
@@ -38,7 +50,7 @@ optional arguments:
   --answer ANSWER      testing output data
 ```
 
-### framework
+### Framework
 - 利用一個簡單版的 sequence to sequence model （eg. 沒有將 decoder 前一步的 output 當作現在的 input）
 - 建構一個 many to many 的 rnn model
 
