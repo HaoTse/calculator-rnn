@@ -1,4 +1,4 @@
-# subtractor
+# Learning based Calculator
 
 ## Goal
 - 參考 [IKMLab adder](https://github.com/IKMLab/Adder-practice) 完成 subtractor
@@ -97,6 +97,17 @@ optional arguments:
     ![figure 7](https://github.com/HaoTse/subtractor/blob/master/img/Figure_7.png)
 
     結果是有成功收斂的，不過加大 data 的數量會再提高準確度
+
+### Multipliction
+只考慮乘法的情況下，設定除了加大 epoch 數量外皆相同，得到以下結果
+
+![figure 8](https://github.com/HaoTse/subtractor/blob/master/img/Figure_8.png)
+
+可以看到準確率只到8成左右，繼續訓練或許準確率會上升，但應該無法達到跟加減法一樣高
+
+### Reverse
+- 另外在過程中也有加入 reverse 的機制，發現準確率會比較高，推斷是因為我們人類在計算時是從個位數算回來，也就是跟 reverse 的想法類似
+- 不過目前 model 的準確率已高達 0.99，因而不加入 reverse 機制
 
 ## Reference
 - [keras adder example](https://github.com/keras-team/keras/blob/master/examples/addition_rnn.py)
